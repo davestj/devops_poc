@@ -45,3 +45,25 @@ bash 'setup_bash_theme_sysopsa' do
      bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
     EOH
 end
+
+##Setup RVM
+#sync gpg keys
+execute 'sync_rvm_gpg' do
+  cwd /home/sysopsa
+  user sysopsa
+  group sysopsa
+  command 'gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB'
+end
+
+bash 'install_rvm_sysopsa' do
+  ## additional install details
+  ## https://rvm.io/rvm/install
+    user sysopsa
+    group sysopsa
+    code <--EOH
+     "\curl -sSL https://get.rvm.io | bash -s stable"
+     EOH
+end
+
+##we could also use the 3rd party https://supermarket.chef.io/cookbooks/rvm
+
