@@ -35,3 +35,13 @@ cookbook_file '/home/sysopsa' do
   group 'root'
   mode '0644'
 end
+
+##setup bash theme for sysopsa user
+bash 'setup_bash_theme_sysopsa' do
+    group sysopsa
+    user sysopsa
+    cwd '/home/sysopsa'
+    code <<-EOH
+     bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
+    EOH
+end
