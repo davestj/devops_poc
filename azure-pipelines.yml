@@ -14,7 +14,7 @@ pool:
     script: |
       # Write your commands here
       
-      echo 'Hello world' && uptime;
+      echo 'Hello world'
 
 steps:
 - script: echo Hello, world!
